@@ -1,52 +1,51 @@
 
 
-var ndarray = require('ndarray');
 
 module.exports = function (self) {
   self.addEventListener('message',function (ev){
     var msg = ev && ev.data && ev.data.msg
     if (!msg) return
 
+    // always send a reply so we can see how long the message took
     var t = performance.now()
-    var s = ''
-    for (var n in self) s += n+','
     self.postMessage({
       msg: 'ack',
-      status: msg+' received.. self stuff:'+s,
-      t: t,
-      dt: t-ev.data.t
+      status: 'got array',
+      t: performance.now()
     })
-    
-    
-    if (msg=='test') doTest(ev.data.arr, ev.data.lookup);
+
+    if (msg=='test') {
+      runTest(ev.data.arr, ev.data.lookup)
+    }
 
   })
 }
 
 
-function doTest(arr, lookup) {
-  var t = performance.now()
+function runTest(arr, lookup) {
+  var t1 = performance.now(),
+      ct = 0
 
-  var nda = new ndarray(arr.data, arr.shape, arr.stride, arr.offset)
-  var is = nda.shape[0]
-  var js = nda.shape[1]
-  var ks = nda.shape[2]
-  for (var i=0; i<is; ++i) {
-    for (var j=0; j<js; ++j) {
-      for (var k=0; k<ks; ++k) {
-        nda.set(i,j,k, lookup[i] + Math.sqrt(i*i + j*j + k*k) )
-      }
-    }
+  // do some arbitrary work on array
+  for (var i=0, len=arr.length; i<len; ++i) {
+    var a = lookup[i%lookup.length]
+    var b = Math.sqrt(a*i)
+    var c = Math.sin(b)%a
+    arr[i] = c * lookup[Math.round(b*i)%lookup.length]
+    ++ct
   }
-  
+
   var t2 = performance.now()
+  var dt = t2-t1
   self.postMessage({
     msg: 'done',
-    status: 'worker done in '+(t2-t).toFixed(2)+'ms',
-    data: nda.data,
+    status: 'did '+ct+' operations in '+ dt.toFixed(2) + 'ms',
+    arr: arr,
     t: t2
   })
-
 }
+
+
+
 
 

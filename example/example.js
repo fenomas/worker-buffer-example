@@ -1,5 +1,0 @@
-
-
-var ops = require('../')
-
-

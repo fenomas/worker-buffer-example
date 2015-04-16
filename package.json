@@ -1,28 +1,18 @@
 {
-  "name": "ndarray-worker-ops",
+  "name": "worker-buffer-example",
   "version": "0.0.1",
-  "description": "Do something on an ndarray in a worker.",
+  "description": "Do something with a buffer in a worker.",
   "main": "index.js",
   "scripts": {
-    "test": "beefy example/example.js 8080 --live --open"
+    "start": "beefy index.js 8080 --live --open"
   },
   "author": "Andy Hall",
   "license": "MIT",
   "keywords": [
-    "ndarray",
     "worker",
     "web worker"
   ],
   "dependencies": {
-    "inherits": "^2.0.1",
-    "ndarray": "^1.0.16",
     "webworkify": "^1.0.2"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/andyhall/TODO"
-  },
-  "bugs": {
-    "url": "https://github.com/andyhall/TODO/issues"
   }
 }
