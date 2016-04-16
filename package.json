@@ -4,7 +4,7 @@
   "description": "Do something with a buffer in a worker.",
   "main": "index.js",
   "scripts": {
-    "start": "beefy index.js 8080 --live --open"
+    "start": "beefy index.js 8080  --open"
   },
   "author": "Andy Hall",
   "license": "MIT",
@@ -14,5 +14,9 @@
   ],
   "dependencies": {
     "webworkify": "^1.0.2"
+  },
+  "devDependencies": {
+    "browserify": "*",
+    "beefy": "*"
   }
 }
