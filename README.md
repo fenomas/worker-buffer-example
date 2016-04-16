@@ -12,8 +12,7 @@ reports how long everything took.
  2. `npm install`
  3. `npm start`
 
-#### Run in the browser
+#### Run in the browser:
 
-Here.
-
+[Here](http://andyhall.github.io/worker-buffer-example/).
 
