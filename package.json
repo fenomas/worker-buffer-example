@@ -1,6 +1,6 @@
 {
   "name": "worker-buffer-example",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Do something with a buffer in a worker.",
   "main": "index.js",
   "scripts": {
